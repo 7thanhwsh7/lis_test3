@@ -1445,7 +1445,7 @@ let answers = {}; // q1..q40
 let flags = {};   // qN: true/false
 let submitted = false;
 
-const STORAGE_KEY = () => 'ielts_t3_' + btoa(studentName + '|' + studentCls);
+const STORAGE_KEY = () => 'ielts_t3_' + btoa(unescape(encodeURIComponent(studentName + '|' + studentCls)));
 
 function saveLocal() {
   if (!studentName) return;
