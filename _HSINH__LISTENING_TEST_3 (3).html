@@ -1,0 +1,1987 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Listening Test 3 – G.EDU</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #D4AF37;
+    --gold-light: #f0d97a;
+    --gold-dim: rgba(212,175,55,0.15);
+    --bg: #fdfcfb;
+    --text: #2d3436;
+    --sidebar-bg: #1a1208;
+    --sidebar-text: #e8d9a0;
+    --border: #e8e0d0;
+    --flag-red: #e05c2a;
+    --answered-gold: #D4AF37;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ===== SIDEBAR ===== */
+  #sidebar {
+    width: 280px;
+    min-height: 100vh;
+    background: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    position: fixed;
+    top: 0; left: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    z-index: 100;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.3);
+    isolation: isolate;
+    contain: layout style;
+  }
+  .sidebar-header {
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 3px;
+    margin-bottom: 4px;
+  }
+  .logo-sub {
+    font-size: 10px;
+    letter-spacing: 2px;
+    opacity: 0.5;
+    text-transform: uppercase;
+  }
+  .student-info {
+    padding: 14px 24px;
+    border-bottom: 1px solid rgba(212,175,55,0.15);
+    font-size: 12px;
+    line-height: 1.7;
+  }
+  .student-info .label { opacity: 0.5; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
+  .student-info .value { color: var(--gold); font-weight: 600; font-size: 13px; }
+  .qmap-section {
+    padding: 16px 24px;
+    flex: 1;
+  }
+  .qmap-title {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.5;
+    margin-bottom: 12px;
+  }
+  .qmap-part-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+    opacity: 0.7;
+    margin: 8px 0 5px;
+  }
+  .qmap-row {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+  }
+  .qmap-cell {
+    width: 36px;
+    height: 28px;
+    border-radius: 4px;
+    border: 1px solid rgba(212,175,55,0.25);
+    background: rgba(255,255,255,0.04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(232,217,160,0.5);
+    cursor: pointer;
+    position: relative;
+    transition: border-color 0.15s, color 0.15s;
+    flex-shrink: 0;
+    will-change: auto;
+  }
+  .qmap-cell:hover { border-color: rgba(212,175,55,0.4); }
+  .qmap-cell.answered {
+    background: var(--gold);
+    color: #1a1208;
+    font-weight: 700;
+    border-color: var(--gold);
+  }
+  .qmap-cell.flagged {
+    border: 2px solid var(--flag-red);
+    color: var(--flag-red);
+  }
+  .qmap-cell.answered.flagged {
+    background: var(--gold);
+    color: #1a1208;
+    border: 2px solid var(--flag-red);
+  }
+  .qmap-cell.answered.flagged::after {
+    content: '';
+    position: absolute;
+    top: 2px; right: 2px;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--flag-red);
+  }
+  .sidebar-actions {
+    padding: 16px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .btn-flag-view {
+    background: rgba(224,92,42,0.12);
+    border: 1px solid rgba(224,92,42,0.35);
+    color: #f08060;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 9px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.15s;
+    letter-spacing: 0.5px;
+  }
+  .btn-flag-view:hover { background: rgba(224,92,42,0.2); }
+  .btn-submit {
+    background: var(--gold);
+    border: none;
+    color: #1a1208;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 13px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    letter-spacing: 1px;
+    transition: background 0.15s;
+  }
+  .btn-submit:hover { background: var(--gold-light); }
+
+  /* ===== MAIN CONTENT ===== */
+  #main {
+    margin-left: 280px;
+    flex: 1;
+    padding: 40px 56px 80px;
+    max-width: calc(100% - 280px);
+  }
+  .test-header {
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--gold-dim);
+  }
+  .test-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .test-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .test-meta {
+    font-size: 13px;
+    color: #888;
+    display: flex;
+    gap: 20px;
+  }
+
+  /* ===== PARTS ===== */
+  .part-block {
+    margin-bottom: 48px;
+  }
+  .part-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #f5f0e8, #fdfcfb);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+  }
+  .question-group {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+  }
+  .qgroup-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  .qgroup-inst {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 16px;
+    line-height: 1.6;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed var(--border);
+  }
+  .qgroup-inst strong { color: var(--text); font-weight: 600; }
+  .example-box {
+    background: #f9f6ee;
+    border-left: 3px solid var(--gold);
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    border-radius: 0 6px 6px 0;
+    font-size: 13px;
+    color: #666;
+  }
+
+  /* ===== NOTE COMPLETION ===== */
+  .note-section {
+    background: #faf8f4;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 4px;
+  }
+  .note-section-title {
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .note-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    flex-wrap: wrap;
+  }
+  .note-label { color: #555; }
+
+  /* ===== QUESTION ROW ===== */
+  .q-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+    scroll-margin-top: 80px;
+  }
+  .q-num {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--gold);
+    min-width: 24px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+  .q-flag-btn {
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    opacity: 0.3;
+    transition: opacity 0.2s;
+    padding: 2px 4px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .q-flag-btn:hover, .q-flag-btn.flagged { opacity: 1; }
+  .q-content { flex: 1; }
+  .q-stem {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    line-height: 1.5;
+    color: #222;
+  }
+
+  /* ===== INPUTS ===== */
+  .q-input {
+    border: none;
+    border-bottom: 2px solid var(--border);
+    background: transparent;
+    padding: 4px 8px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    min-width: 140px;
+    outline: none;
+    transition: border-color 0.2s;
+    text-align: center;
+  }
+  .q-input:focus { border-bottom-color: var(--gold); }
+  .q-input.filled { border-bottom-color: var(--gold); color: var(--gold); }
+  .q-select {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #fff;
+    padding: 6px 12px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 13px;
+    color: var(--text);
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    min-width: 260px;
+  }
+  .q-select:focus { border-color: var(--gold); }
+  .q-select.filled { border-color: var(--gold); color: var(--gold); font-weight: 600; }
+
+  /* ===== MCQ ===== */
+  .mcq-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-size: 14px;
+    border: 1px solid transparent;
+  }
+  .mcq-option:hover { background: #faf6ee; border-color: var(--border); }
+  .mcq-option input[type="radio"],
+  .mcq-option input[type="checkbox"] {
+    accent-color: var(--gold);
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .mcq-option.selected {
+    background: var(--gold-dim);
+    border-color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* ===== FLOW CHART ===== */
+  .flowchart {
+    background: #faf8f4;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+  }
+  .flow-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 4px;
+    font-size: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.6;
+  }
+  .flow-arrow {
+    text-align: center;
+    color: var(--gold);
+    font-size: 18px;
+    margin: 4px 0;
+  }
+
+  /* ===== HIGHLIGHT MENU ===== */
+  #highlight-menu {
+    position: fixed;
+    z-index: 9999;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    padding: 8px;
+    display: none;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+    width: auto;
+  }
+  #highlight-menu.visible { display: flex; }
+  .hl-btn {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    border: 2px solid rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+  .hl-btn:hover { transform: scale(1.2); }
+  .hl-clear { font-size: 11px; padding: 4px 8px; border-radius: 4px; background: #f5f5f5; border: 1px solid #ddd; cursor: pointer; white-space: nowrap; }
+
+  /* ===== LOGIN SCREEN ===== */
+  #login-screen {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #1a1208 0%, #2d2010 100%);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .login-card {
+    background: var(--bg);
+    border-radius: 16px;
+    padding: 48px 52px;
+    width: 440px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    text-align: center;
+  }
+  .login-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 4px;
+    margin-bottom: 4px;
+  }
+  .login-subtitle {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    color: #999;
+    text-transform: uppercase;
+    margin-bottom: 36px;
+  }
+  .login-field {
+    margin-bottom: 18px;
+    text-align: left;
+  }
+  .login-field label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #888;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .login-field input {
+    width: 100%;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 13px 16px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+    background: #fff;
+    text-transform: uppercase;
+  }
+  .login-field input:focus { border-color: var(--gold); }
+  .login-error {
+    font-size: 13px;
+    color: #e05c2a;
+    margin-bottom: 12px;
+    min-height: 18px;
+  }
+  .btn-login {
+    width: 100%;
+    background: var(--gold);
+    border: none;
+    color: #1a1208;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: background 0.2s;
+  }
+  .btn-login:hover { background: var(--gold-light); }
+
+  /* ===== RESULT SCREEN ===== */
+  #result-screen {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26,18,8,0.92);
+    z-index: 500;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  #result-screen.visible { display: flex; }
+  .result-card {
+    background: var(--bg);
+    border-radius: 16px;
+    padding: 52px 60px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    max-width: 480px;
+    width: 90%;
+  }
+  .result-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .result-score {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+    margin: 20px 0 6px;
+  }
+  .result-score span { font-size: 32px; color: #999; font-weight: 400; }
+  .result-name { font-size: 15px; color: #666; margin-bottom: 8px; }
+  .result-status {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 32px;
+    padding: 10px 16px;
+    border-radius: 6px;
+    display: inline-block;
+  }
+  .result-actions { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+  .btn-answer-sheet {
+    background: var(--gold);
+    border: none;
+    color: #1a1208;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 13px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+  }
+  .btn-answer-sheet:hover { background: var(--gold-light); }
+
+  /* ===== ANSWER SHEET ===== */
+  #answer-sheet-screen {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 600;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    padding: 20px;
+  }
+  #answer-sheet-screen.visible { display: flex; }
+  .answer-sheet {
+    background: #fff;
+    border-radius: 12px;
+    padding: 40px 48px;
+    width: 640px;
+    max-width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    position: relative;
+  }
+  .as-header {
+    text-align: center;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 20px;
+    margin-bottom: 24px;
+  }
+  .as-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 4px;
+  }
+  .as-test-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 8px 0 4px;
+  }
+  .as-meta {
+    font-size: 12px;
+    color: #888;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .as-meta span b { color: var(--text); }
+  .as-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  .as-part-header {
+    grid-column: 1 / -1;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    padding: 8px 0 4px;
+    border-bottom: 1px solid var(--border);
+    margin-top: 6px;
+  }
+  .as-cell {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 10px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: #fdfcfb;
+  }
+  .as-cell-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold);
+    min-width: 20px;
+  }
+  .as-cell-ans {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    word-break: break-word;
+  }
+  .as-footer {
+    text-align: center;
+    font-size: 11px;
+    color: #aaa;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    letter-spacing: 0.5px;
+  }
+  .btn-close-as {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: #f5f0e8;
+    border: none;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    transition: background 0.2s;
+  }
+  .btn-close-as:hover { background: var(--gold-dim); }
+
+  /* ===== FLAG REVIEW PANEL ===== */
+  #flag-panel {
+    display: none;
+    position: fixed;
+    top: 0; right: 0;
+    width: 320px;
+    height: 100vh;
+    background: #fff;
+    border-left: 1px solid var(--border);
+    box-shadow: -4px 0 24px rgba(0,0,0,0.1);
+    z-index: 200;
+    padding: 0;
+    overflow-y: auto;
+  }
+  #flag-panel.visible { display: block; }
+  .fp-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: #fff;
+  }
+  .fp-title { font-weight: 700; font-size: 14px; }
+  .fp-close { background: none; border: none; font-size: 20px; cursor: pointer; color: #888; }
+  .fp-item {
+    padding: 12px 24px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    transition: background 0.15s;
+  }
+  .fp-item:hover { background: #faf6ee; }
+  .fp-q-num { font-weight: 700; color: var(--gold); min-width: 28px; }
+  .fp-empty { padding: 32px 24px; text-align: center; color: #aaa; font-size: 13px; }
+
+  /* ===== UTILITY ===== */
+  .anchor { scroll-margin-top: 80px; }
+
+  /* ===== REVIEW MODE ===== */
+  #review-banner {
+    position: fixed;
+    top: 0; left: 280px; right: 0;
+    z-index: 300;
+    background: linear-gradient(90deg, #1a1208, #2d2010);
+    color: var(--gold);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 24px;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+  #review-banner.visible { display: flex; }
+  #review-banner .rb-left { display: flex; align-items: center; gap: 10px; }
+  #review-banner .rb-icon { font-size: 16px; }
+  #review-banner .rb-score {
+    background: var(--gold);
+    color: #1a1208;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+  }
+
+  body.review-mode #main { padding-top: 96px; }
+  body.review-mode .q-flag-btn { display: none; }
+  body.review-mode #sidebar .btn-submit { display: none; }
+  body.review-mode #sidebar .btn-flag-view { display: none; }
+
+  /* Readonly input style in review mode */
+  body.review-mode .q-input {
+    pointer-events: none;
+    background: transparent;
+    border-bottom-color: var(--gold-dim);
+    color: var(--gold);
+    font-weight: 700;
+    cursor: default;
+  }
+  body.review-mode .q-input:focus { border-bottom-color: var(--gold-dim); outline: none; }
+  body.review-mode .q-select {
+    pointer-events: none;
+    border-color: var(--gold-dim);
+    color: var(--gold);
+    font-weight: 600;
+    cursor: default;
+    background: #fdfcfb;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  body.review-mode .mcq-option {
+    pointer-events: none;
+    cursor: default;
+  }
+  body.review-mode .mcq-option input { pointer-events: none; }
+  body.review-mode .mcq-option.selected {
+    background: var(--gold-dim);
+    border-color: var(--gold);
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">G.EDU</div>
+    <div class="login-subtitle">IELTS Listening Test 3</div>
+    <div class="login-field">
+      <label>Họ và Tên</label>
+      <input type="text" id="login-name" placeholder="NHẬP CHỮ IN HOA" autocomplete="off">
+    </div>
+    <div class="login-field">
+      <label>Lớp</label>
+      <input type="text" id="login-cls" placeholder="NHẬP CHỮ IN HOA" autocomplete="off">
+    </div>
+    <div class="login-error" id="login-error"></div>
+    <button class="btn-login" onclick="doLogin()">BẮT ĐẦU LÀM BÀI →</button>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<div id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">G.EDU</div>
+    <div class="logo-sub">Listening Test 3</div>
+  </div>
+  <div class="student-info" id="student-info">
+    <div class="label">Thí sinh</div>
+    <div class="value" id="sb-name">—</div>
+    <div class="label" style="margin-top:6px">Lớp</div>
+    <div class="value" id="sb-cls">—</div>
+  </div>
+  <div class="qmap-section">
+    <div class="qmap-title">Question Map</div>
+    <div id="qmap"></div>
+  </div>
+  <div class="sidebar-actions">
+    <button class="btn-flag-view" onclick="toggleFlagPanel()">🚩 Xem câu đánh dấu</button>
+    <button class="btn-submit" onclick="confirmSubmit()">NỘP BÀI</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+  <div class="test-header">
+    <div class="test-eyebrow">G.EDU · Academic Preparation</div>
+    <div class="test-title">IELTS Listening Test 3</div>
+    <div class="test-meta">
+      <span>40 Questions</span>
+      <span>·</span>
+      <span>4 Parts</span>
+    </div>
+  </div>
+
+  <!-- PART 1 -->
+  <div class="part-block">
+    <div class="part-title">PART 1 — Questions 1–10</div>
+
+    <div class="question-group">
+      <div class="qgroup-title">Questions 1–10</div>
+      <div class="qgroup-inst">Complete the notes below.<br>Write <strong>ONE WORD AND/OR A NUMBER</strong> for each answer.</div>
+
+      <div style="text-align:center; font-family:'Playfair Display',serif; font-weight:600; font-size:16px; margin-bottom:16px;">Planning a party</div>
+
+      <div class="example-box">
+        <b>Example</b> — Reason for event: wife's <u><i>promotion</i></u>
+      </div>
+
+      <div class="note-section">
+        <div class="note-section-title">EVENT DETAILS</div>
+        <div class="note-line"><span class="note-label">Event option: large surprise party</span></div>
+        <div class="note-line anchor" id="anchor-1">
+          <span class="note-label">Number of people:</span>
+          <div class="q-row" style="margin:0;gap:6px">
+            <span class="q-num">1</span>
+            <button class="q-flag-btn" data-q="1" onclick="toggleFlag(1)">🚩</button>
+            <input class="q-input" id="q1" type="text" oninput="onInput(1)" onblur="onInput(1)">
+          </div>
+        </div>
+        <div class="note-line anchor" id="anchor-2">
+          <span class="note-label">Date:</span>
+          <div class="q-row" style="margin:0;gap:6px">
+            <span class="q-num">2</span>
+            <button class="q-flag-btn" data-q="2" onclick="toggleFlag(2)">🚩</button>
+            <input class="q-input" id="q2" type="text" oninput="onInput(2)" onblur="onInput(2)" style="min-width:180px">
+          </div>
+        </div>
+        <div class="note-line"><span class="note-label">Day of week: Friday</span></div>
+        <div class="note-line"><span class="note-label">Time: 6 – 10 p.m.</span></div>
+        <div class="note-line anchor" id="anchor-3">
+          <span class="note-label">Location: the</span>
+          <div class="q-row" style="margin:0;gap:6px">
+            <span class="q-num">3</span>
+            <button class="q-flag-btn" data-q="3" onclick="toggleFlag(3)">🚩</button>
+            <input class="q-input" id="q3" type="text" oninput="onInput(3)" onblur="onInput(3)">
+          </div>
+          <span class="note-label">Room</span>
+        </div>
+        <div class="note-line anchor" id="anchor-4">
+          <span class="note-label">Type of music</span>
+          <div class="q-row" style="margin:0;gap:6px">
+            <span class="q-num">4</span>
+            <button class="q-flag-btn" data-q="4" onclick="toggleFlag(4)">🚩</button>
+            <input class="q-input" id="q4" type="text" oninput="onInput(4)" onblur="onInput(4)">
+          </div>
+        </div>
+      </div>
+
+      <div class="note-section" style="margin-top:12px">
+        <div class="note-section-title">FOOD</div>
+        <div class="note-line anchor" id="anchor-5">
+          <span class="note-label">Service option:</span>
+          <div class="q-row" style="margin:0;gap:6px">
+            <span class="q-num">5</span>
+            <button class="q-flag-btn" data-q="5" onclick="toggleFlag(5)">🚩</button>
+            <input class="q-input" id="q5" type="text" oninput="onInput(5)" onblur="onInput(5)">
+          </div>
+        </div>
+        <div class="note-line anchor" id="anchor-6">
+          <span class="note-label">Flavour of cake:</span>
+          <div class="q-row" style="margin:0;gap:6px">
+            <span class="q-num">6</span>
+            <button class="q-flag-btn" data-q="6" onclick="toggleFlag(6)">🚩</button>
+            <input class="q-input" id="q6" type="text" oninput="onInput(6)" onblur="onInput(6)">
+          </div>
+        </div>
+        <div class="note-line anchor" id="anchor-7">
+          <span class="note-label">Message on cake:</span>
+          <div class="q-row" style="margin:0;gap:6px">
+            <span class="q-num">7</span>
+            <button class="q-flag-btn" data-q="7" onclick="toggleFlag(7)">🚩</button>
+            <input class="q-input" id="q7" type="text" oninput="onInput(7)" onblur="onInput(7)">
+          </div>
+        </div>
+      </div>
+
+      <div class="note-section" style="margin-top:12px">
+        <div class="note-section-title">PAYMENT</div>
+        <div class="note-line"><span class="note-label">Reservation fee paid: $100</span></div>
+        <div class="note-line"><span class="note-label">Credit card type: Mastercard</span></div>
+        <div class="note-line anchor" id="anchor-8">
+          <span class="note-label">Credit card number:</span>
+          <div class="q-row" style="margin:0;gap:6px">
+            <span class="q-num">8</span>
+            <button class="q-flag-btn" data-q="8" onclick="toggleFlag(8)">🚩</button>
+            <input class="q-input" id="q8" type="text" oninput="onInput(8)" onblur="onInput(8)" style="min-width:220px">
+          </div>
+        </div>
+        <div class="note-line anchor" id="anchor-9">
+          <span class="note-label">Name: Brian</span>
+          <div class="q-row" style="margin:0;gap:6px">
+            <span class="q-num">9</span>
+            <button class="q-flag-btn" data-q="9" onclick="toggleFlag(9)">🚩</button>
+            <input class="q-input" id="q9" type="text" oninput="onInput(9)" onblur="onInput(9)">
+          </div>
+          <span class="note-label">Troy</span>
+        </div>
+        <div class="note-line anchor" id="anchor-10">
+          <span class="note-label">Additional fees: extra charge for</span>
+          <div class="q-row" style="margin:0;gap:6px">
+            <span class="q-num">10</span>
+            <button class="q-flag-btn" data-q="10" onclick="toggleFlag(10)">🚩</button>
+            <input class="q-input" id="q10" type="text" oninput="onInput(10)" onblur="onInput(10)">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 2 -->
+  <div class="part-block">
+    <div class="part-title">PART 2 — Questions 11–20</div>
+
+    <!-- Q11-12 MCQ -->
+    <div class="question-group">
+      <div class="qgroup-title">Questions 11–12</div>
+      <div class="qgroup-inst">Choose the correct answer.</div>
+
+      <div id="anchor-11" class="anchor q-row" style="flex-direction:column; gap:8px; margin-bottom:20px">
+        <div style="display:flex; gap:8px; align-items:flex-start">
+          <span class="q-num">11</span>
+          <button class="q-flag-btn" data-q="11" onclick="toggleFlag(11)">🚩</button>
+          <div class="q-content">
+            <div class="q-stem">Joan normally gets up at</div>
+            <label class="mcq-option"><input type="radio" name="q11" value="A" onchange="onRadio(11,'A')"> A. 5.30 a.m</label>
+            <label class="mcq-option"><input type="radio" name="q11" value="B" onchange="onRadio(11,'B')"> B. 6.30 a.m</label>
+            <label class="mcq-option"><input type="radio" name="q11" value="C" onchange="onRadio(11,'C')"> C. 7.30 a.m</label>
+          </div>
+        </div>
+      </div>
+
+      <div id="anchor-12" class="anchor q-row" style="flex-direction:column; gap:8px">
+        <div style="display:flex; gap:8px; align-items:flex-start">
+          <span class="q-num">12</span>
+          <button class="q-flag-btn" data-q="12" onclick="toggleFlag(12)">🚩</button>
+          <div class="q-content">
+            <div class="q-stem">Joan's first task of the day is to</div>
+            <label class="mcq-option"><input type="radio" name="q12" value="A" onchange="onRadio(12,'A')"> A. clean the horses.</label>
+            <label class="mcq-option"><input type="radio" name="q12" value="B" onchange="onRadio(12,'B')"> B. organise her son.</label>
+            <label class="mcq-option"><input type="radio" name="q12" value="C" onchange="onRadio(12,'C')"> C. do farm work.</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q13-14 Fill-in -->
+    <div class="question-group">
+      <div class="qgroup-title">Questions 13–14</div>
+      <div class="qgroup-inst">Complete the summary below.<br>Write <strong>ONE WORD AND/OR A NUMBER</strong> for each answer.</div>
+      <div style="font-size:14px; line-height:1.9;">
+        Joan's official title in Riding for the Disabled (RDA) is chairperson. In her local district there are at present twenty-two riders and
+        <span class="anchor" id="anchor-13" style="display:inline-flex; align-items:center; gap:5px; margin:0 4px">
+          <span class="q-num">13</span>
+          <button class="q-flag-btn" data-q="13" onclick="toggleFlag(13)">🚩</button>
+          <input class="q-input" id="q13" type="text" oninput="onInput(13)" onblur="onInput(13)">
+        </span>
+        helpers on the volunteer list, out of whom
+        <span class="anchor" id="anchor-14" style="display:inline-flex; align-items:center; gap:5px; margin:0 4px">
+          <span class="q-num">14</span>
+          <button class="q-flag-btn" data-q="14" onclick="toggleFlag(14)">🚩</button>
+          <input class="q-input" id="q14" type="text" oninput="onInput(14)" onblur="onInput(14)">
+        </span>
+        come regularly.
+      </div>
+    </div>
+
+    <!-- Q15-18 Matching -->
+    <div class="question-group">
+      <div class="qgroup-title">Questions 15–18</div>
+      <div class="qgroup-inst"><em>How much does Joan like doing each of the following activities?</em><br>Choose the correct letter, A, B or C, next to questions 15–18.<br><b>A</b> She really likes it.&nbsp;&nbsp;<b>B</b> She doesn't mind it.&nbsp;&nbsp;<b>C</b> She hates it.</div>
+
+      <div style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#888; margin-bottom:10px;">Activities</div>
+
+      <div id="anchor-15" class="anchor q-row" style="align-items:center; gap:8px; margin-bottom:10px">
+        <span class="q-num">15</span>
+        <button class="q-flag-btn" data-q="15" onclick="toggleFlag(15)">🚩</button>
+        <span style="font-size:14px; font-weight:600; flex:1">correspondence</span>
+        <select class="q-select" id="q15" onchange="onSelect(15)">
+          <option value="">— Chọn —</option>
+          <option value="A">A - She really likes it.</option>
+          <option value="B">B - She doesn't mind it.</option>
+          <option value="C">C - She hates it.</option>
+        </select>
+      </div>
+      <div id="anchor-16" class="anchor q-row" style="align-items:center; gap:8px; margin-bottom:10px">
+        <span class="q-num">16</span>
+        <button class="q-flag-btn" data-q="16" onclick="toggleFlag(16)">🚩</button>
+        <span style="font-size:14px; font-weight:600; flex:1">fund-raising</span>
+        <select class="q-select" id="q16" onchange="onSelect(16)">
+          <option value="">— Chọn —</option>
+          <option value="A">A - She really likes it.</option>
+          <option value="B">B - She doesn't mind it.</option>
+          <option value="C">C - She hates it.</option>
+        </select>
+      </div>
+      <div id="anchor-17" class="anchor q-row" style="align-items:center; gap:8px; margin-bottom:10px">
+        <span class="q-num">17</span>
+        <button class="q-flag-btn" data-q="17" onclick="toggleFlag(17)">🚩</button>
+        <span style="font-size:14px; font-weight:600; flex:1">calling riders</span>
+        <select class="q-select" id="q17" onchange="onSelect(17)">
+          <option value="">— Chọn —</option>
+          <option value="A">A - She really likes it.</option>
+          <option value="B">B - She doesn't mind it.</option>
+          <option value="C">C - She hates it.</option>
+        </select>
+      </div>
+      <div id="anchor-18" class="anchor q-row" style="align-items:center; gap:8px">
+        <span class="q-num">18</span>
+        <button class="q-flag-btn" data-q="18" onclick="toggleFlag(18)">🚩</button>
+        <span style="font-size:14px; font-weight:600; flex:1">organising accounts</span>
+        <select class="q-select" id="q18" onchange="onSelect(18)">
+          <option value="">— Chọn —</option>
+          <option value="A">A - She really likes it.</option>
+          <option value="B">B - She doesn't mind it.</option>
+          <option value="C">C - She hates it.</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Q19-20 Multiple choice 2 answers -->
+    <div class="question-group">
+      <div class="qgroup-title">Questions 19–20</div>
+      <div class="qgroup-inst">Choose <strong>TWO</strong> correct answers.<br><b>Joan says the TWO ways the RDA needs to improve are by</b></div>
+      <div id="anchor-19" class="anchor">
+        <label class="mcq-option"><input type="checkbox" name="q1920" value="A" onchange="onCheckbox1920()"> A. giving special training.</label>
+        <label class="mcq-option"><input type="checkbox" name="q1920" value="B" onchange="onCheckbox1920()"> B. making fund-raising more effective.</label>
+        <label class="mcq-option"><input type="checkbox" name="q1920" value="C" onchange="onCheckbox1920()"> C. opening more RDA centres.</label>
+        <label class="mcq-option"><input type="checkbox" name="q1920" value="D" onchange="onCheckbox1920()"> D. providing more helpers.</label>
+        <label class="mcq-option"><input type="checkbox" name="q1920" value="E" onchange="onCheckbox1920()"> E. recognising difficulties of disabled riders.</label>
+      </div>
+      <div id="anchor-20" class="anchor" style="font-size:12px;color:#999;margin-top:8px;">(Câu 19–20: chọn đúng 2 đáp án)</div>
+    </div>
+  </div>
+
+  <!-- PART 3 -->
+  <div class="part-block">
+    <div class="part-title">PART 3 — Questions 21–30</div>
+
+    <!-- Q21-22 TWO correct -->
+    <div class="question-group">
+      <div class="qgroup-title">Questions 21–22</div>
+      <div class="qgroup-inst">Choose <strong>TWO</strong> correct answers.<br><b>Which TWO topics were the aims of the geography lesson related to?</b></div>
+      <div id="anchor-21" class="anchor">
+        <label class="mcq-option"><input type="checkbox" name="q2122" value="A" onchange="onCheckbox2122()"> A. global interdependency</label>
+        <label class="mcq-option"><input type="checkbox" name="q2122" value="B" onchange="onCheckbox2122()"> B. manufacturing method</label>
+        <label class="mcq-option"><input type="checkbox" name="q2122" value="C" onchange="onCheckbox2122()"> C. the environmental impact of trade</label>
+        <label class="mcq-option"><input type="checkbox" name="q2122" value="D" onchange="onCheckbox2122()"> D. transport systems</label>
+        <label class="mcq-option"><input type="checkbox" name="q2122" value="E" onchange="onCheckbox2122()"> E. the development of writing tools</label>
+      </div>
+      <div id="anchor-22" class="anchor" style="font-size:12px;color:#999;margin-top:8px;">(Câu 21–22: chọn đúng 2 đáp án)</div>
+    </div>
+
+    <!-- Q23-24 TWO problems -->
+    <div class="question-group">
+      <div class="qgroup-title">Questions 23–24</div>
+      <div class="qgroup-inst">Choose <strong>TWO</strong> correct answers.<br><b>Which TWO problems do Dean and Hannah identify in their lesson?</b></div>
+      <div id="anchor-23" class="anchor">
+        <label class="mcq-option"><input type="checkbox" name="q2324" value="A" onchange="onCheckbox2324()"> A. the materials</label>
+        <label class="mcq-option"><input type="checkbox" name="q2324" value="B" onchange="onCheckbox2324()"> B. the student grouping</label>
+        <label class="mcq-option"><input type="checkbox" name="q2324" value="C" onchange="onCheckbox2324()"> C. the lesson structure</label>
+        <label class="mcq-option"><input type="checkbox" name="q2324" value="D" onchange="onCheckbox2324()"> D. the teacher coordination</label>
+        <label class="mcq-option"><input type="checkbox" name="q2324" value="E" onchange="onCheckbox2324()"> E. the timing</label>
+      </div>
+      <div id="anchor-24" class="anchor" style="font-size:12px;color:#999;margin-top:8px;">(Câu 23–24: chọn đúng 2 đáp án)</div>
+    </div>
+
+    <!-- Q25-30 Flowchart matching -->
+    <div class="question-group">
+      <div class="qgroup-title">Questions 25–30</div>
+      <div class="qgroup-inst">Complete the flow-chart below.<br>Choose <strong>SIX</strong> correct answers, <strong>A–H</strong>, next to questions 25–30.
+        <div style="display:flex; flex-wrap:wrap; gap:8px 20px; margin-top:10px; font-size:13px;">
+          <span><b>A</b> export routes</span><span><b>B</b> future</span><span><b>C</b> talk</span><span><b>D</b> homework</span>
+          <span><b>E</b> worksheet</span><span><b>F</b> history</span><span><b>G</b> producers</span><span><b>H</b> methods of transport</span>
+        </div>
+      </div>
+
+      <div class="flowchart">
+        <div style="text-align:center; font-weight:700; font-size:14px; margin-bottom:16px;">Geography lesson plan: student activities</div>
+        <div class="flow-step">Examine a pencil and discuss where the component materials come from</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">
+          Locate the top
+          <span class="anchor" id="anchor-25" style="display:inline-flex; align-items:center; gap:5px">
+            <span class="q-num">25</span>
+            <button class="q-flag-btn" data-q="25" onclick="toggleFlag(25)">🚩</button>
+            <select class="q-select" id="q25" onchange="onSelect(25)" style="min-width:180px">
+              <option value="">— Chọn —</option>
+              <option value="A">A - export routes</option><option value="B">B - future</option>
+              <option value="C">C - talk</option><option value="D">D - homework</option>
+              <option value="E">E - worksheet</option><option value="F">F - history</option>
+              <option value="G">G - producers</option><option value="H">H - methods of transport</option>
+            </select>
+          </span>
+          on a world map
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">
+          Discuss the pros and cons of different
+          <span class="anchor" id="anchor-26" style="display:inline-flex; align-items:center; gap:5px">
+            <span class="q-num">26</span>
+            <button class="q-flag-btn" data-q="26" onclick="toggleFlag(26)">🚩</button>
+            <select class="q-select" id="q26" onchange="onSelect(26)" style="min-width:180px">
+              <option value="">— Chọn —</option>
+              <option value="A">A - export routes</option><option value="B">B - future</option>
+              <option value="C">C - talk</option><option value="D">D - homework</option>
+              <option value="E">E - worksheet</option><option value="F">F - history</option>
+              <option value="G">G - producers</option><option value="H">H - methods of transport</option>
+            </select>
+          </span>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">
+          In groups, discuss countries' possible
+          <span class="anchor" id="anchor-27" style="display:inline-flex; align-items:center; gap:5px">
+            <span class="q-num">27</span>
+            <button class="q-flag-btn" data-q="27" onclick="toggleFlag(27)">🚩</button>
+            <select class="q-select" id="q27" onchange="onSelect(27)" style="min-width:180px">
+              <option value="">— Chọn —</option>
+              <option value="A">A - export routes</option><option value="B">B - future</option>
+              <option value="C">C - talk</option><option value="D">D - homework</option>
+              <option value="E">E - worksheet</option><option value="F">F - history</option>
+              <option value="G">G - producers</option><option value="H">H - methods of transport</option>
+            </select>
+          </span>
+          to the USA
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">
+          Complete a
+          <span class="anchor" id="anchor-28" style="display:inline-flex; align-items:center; gap:5px">
+            <span class="q-num">28</span>
+            <button class="q-flag-btn" data-q="28" onclick="toggleFlag(28)">🚩</button>
+            <select class="q-select" id="q28" onchange="onSelect(28)" style="min-width:180px">
+              <option value="">— Chọn —</option>
+              <option value="A">A - export routes</option><option value="B">B - future</option>
+              <option value="C">C - talk</option><option value="D">D - homework</option>
+              <option value="E">E - worksheet</option><option value="F">F - history</option>
+              <option value="G">G - producers</option><option value="H">H - methods of transport</option>
+            </select>
+          </span>
+          about pencil distribution within the USA
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">
+          Share ideas about the
+          <span class="anchor" id="anchor-29" style="display:inline-flex; align-items:center; gap:5px">
+            <span class="q-num">29</span>
+            <button class="q-flag-btn" data-q="29" onclick="toggleFlag(29)">🚩</button>
+            <select class="q-select" id="q29" onchange="onSelect(29)" style="min-width:180px">
+              <option value="">— Chọn —</option>
+              <option value="A">A - export routes</option><option value="B">B - future</option>
+              <option value="C">C - talk</option><option value="D">D - homework</option>
+              <option value="E">E - worksheet</option><option value="F">F - history</option>
+              <option value="G">G - producers</option><option value="H">H - methods of transport</option>
+            </select>
+          </span>
+          of pencils
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">
+          Prepare a
+          <span class="anchor" id="anchor-30" style="display:inline-flex; align-items:center; gap:5px">
+            <span class="q-num">30</span>
+            <button class="q-flag-btn" data-q="30" onclick="toggleFlag(30)">🚩</button>
+            <select class="q-select" id="q30" onchange="onSelect(30)" style="min-width:180px">
+              <option value="">— Chọn —</option>
+              <option value="A">A - export routes</option><option value="B">B - future</option>
+              <option value="C">C - talk</option><option value="D">D - homework</option>
+              <option value="E">E - worksheet</option><option value="F">F - history</option>
+              <option value="G">G - producers</option><option value="H">H - methods of transport</option>
+            </select>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 4 -->
+  <div class="part-block">
+    <div class="part-title">PART 4 — Questions 31–40</div>
+
+    <div class="question-group">
+      <div class="qgroup-title">Questions 31–40</div>
+      <div class="qgroup-inst">Complete the notes below.<br>Write <strong>ONE WORD ONLY</strong> for each answer.</div>
+      <div style="text-align:center; font-family:'Playfair Display',serif; font-weight:600; font-size:16px; margin-bottom:20px;">The world's oldest mechanical computer: the Antikythera mechanism</div>
+
+      <div class="note-section">
+        <div class="note-section-title">Discovery</div>
+        <div class="note-line anchor" id="anchor-31">
+          <span class="note-label">• It was part of a ship's</span>
+          <div class="q-row" style="margin:0;gap:6px">
+            <span class="q-num">31</span>
+            <button class="q-flag-btn" data-q="31" onclick="toggleFlag(31)">🚩</button>
+            <input class="q-input" id="q31" type="text" oninput="onInput(31)" onblur="onInput(31)">
+          </div>
+          <span class="note-label">, found in the sea near Antikythera, in Greece.</span>
+        </div>
+        <div class="note-line anchor" id="anchor-32">
+          <span class="note-label">• It was wrongly thought to be a piece of</span>
+          <div class="q-row" style="margin:0;gap:6px">
+            <span class="q-num">32</span>
+            <button class="q-flag-btn" data-q="32" onclick="toggleFlag(32)">🚩</button>
+            <input class="q-input" id="q32" type="text" oninput="onInput(32)" onblur="onInput(32)">
+          </div>
+        </div>
+        <div class="note-line"><span class="note-label">• It was later found to be a mechanism that had broken into pieces.</span></div>
+      </div>
+
+      <div class="note-section" style="margin-top:12px">
+        <div class="note-section-title">Equipment used for analysis of the mechanism</div>
+        <div class="note-line anchor" id="anchor-33">
+          <span class="note-label">• "Dome" – produces photographs which make the</span>
+          <div class="q-row" style="margin:0;gap:6px">
+            <span class="q-num">33</span>
+            <button class="q-flag-btn" data-q="33" onclick="toggleFlag(33)">🚩</button>
+            <input class="q-input" id="q33" type="text" oninput="onInput(33)" onblur="onInput(33)">
+          </div>
+          <span class="note-label">clearer</span>
+        </div>
+        <div class="note-line anchor" id="anchor-34">
+          <span class="note-label">• "BladeRunner" – produces X-rays – originally used to identify</span>
+          <div class="q-row" style="margin:0;gap:6px">
+            <span class="q-num">34</span>
+            <button class="q-flag-btn" data-q="34" onclick="toggleFlag(34)">🚩</button>
+            <input class="q-input" id="q34" type="text" oninput="onInput(34)" onblur="onInput(34)">
+          </div>
+          <span class="note-label">in engines</span>
+        </div>
+      </div>
+
+      <div class="note-section" style="margin-top:12px">
+        <div class="note-section-title">Description</div>
+        <div class="note-line"><span class="note-label">The mechanism consisted of</span></div>
+        <div class="note-line anchor" id="anchor-35">
+          <span class="note-label">• 30 or more gear wheels made of</span>
+          <div class="q-row" style="margin:0;gap:6px">
+            <span class="q-num">35</span>
+            <button class="q-flag-btn" data-q="35" onclick="toggleFlag(35)">🚩</button>
+            <input class="q-input" id="q35" type="text" oninput="onInput(35)" onblur="onInput(35)">
+          </div>
+        </div>
+        <div class="note-line"><span class="note-label">• models of the sun, moon and planets</span></div>
+        <div class="note-line anchor" id="anchor-36">
+          <span class="note-label">• a framework made of</span>
+          <div class="q-row" style="margin:0;gap:6px">
+            <span class="q-num">36</span>
+            <button class="q-flag-btn" data-q="36" onclick="toggleFlag(36)">🚩</button>
+            <input class="q-input" id="q36" type="text" oninput="onInput(36)" onblur="onInput(36)">
+          </div>
+        </div>
+      </div>
+
+      <div class="note-section" style="margin-top:12px">
+        <div class="note-section-title">How the mechanism was used</div>
+        <div class="note-line anchor" id="anchor-37">
+          <span class="note-label">• The operator turned a</span>
+          <div class="q-row" style="margin:0;gap:6px">
+            <span class="q-num">37</span>
+            <button class="q-flag-btn" data-q="37" onclick="toggleFlag(37)">🚩</button>
+            <input class="q-input" id="q37" type="text" oninput="onInput(37)" onblur="onInput(37)">
+          </div>
+          <span class="note-label">to move the gear wheels.</span>
+        </div>
+        <div class="note-line"><span class="note-label">• The sun, moon and planets could be moved into their correct positions for any date.</span></div>
+        <div class="note-line anchor" id="anchor-38">
+          <span class="note-label">• Most surprisingly, the mechanism could calculate when an</span>
+          <div class="q-row" style="margin:0;gap:6px">
+            <span class="q-num">38</span>
+            <button class="q-flag-btn" data-q="38" onclick="toggleFlag(38)">🚩</button>
+            <input class="q-input" id="q38" type="text" oninput="onInput(38)" onblur="onInput(38)">
+          </div>
+          <span class="note-label">would occur.</span>
+        </div>
+        <div class="note-line anchor" id="anchor-39">
+          <span class="note-label">• It may have been used as a</span>
+          <div class="q-row" style="margin:0;gap:6px">
+            <span class="q-num">39</span>
+            <button class="q-flag-btn" data-q="39" onclick="toggleFlag(39)">🚩</button>
+            <input class="q-input" id="q39" type="text" oninput="onInput(39)" onblur="onInput(39)">
+          </div>
+          <span class="note-label">when planning festivals.</span>
+        </div>
+      </div>
+
+      <div class="note-section" style="margin-top:12px">
+        <div class="note-section-title">Later use of similar technology</div>
+        <div class="note-line anchor" id="anchor-40">
+          <span class="note-label">• 13th–14th centuries: used for making</span>
+          <div class="q-row" style="margin:0;gap:6px">
+            <span class="q-num">40</span>
+            <button class="q-flag-btn" data-q="40" onclick="toggleFlag(40)">🚩</button>
+            <input class="q-input" id="q40" type="text" oninput="onInput(40)" onblur="onInput(40)">
+          </div>
+          <span class="note-label">in Western Europe.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HIGHLIGHT MENU -->
+<div id="highlight-menu">
+  <button class="hl-btn" style="background:#FFE066" onclick="applyHighlight('#FFE066')" title="Vàng"></button>
+  <button class="hl-btn" style="background:#90EE90" onclick="applyHighlight('#90EE90')" title="Xanh lá"></button>
+  <button class="hl-btn" style="background:#87CEEB" onclick="applyHighlight('#87CEEB')" title="Xanh dương"></button>
+  <button class="hl-btn" style="background:#FFB6C1" onclick="applyHighlight('#FFB6C1')" title="Hồng"></button>
+  <button class="hl-clear" onclick="clearHighlight()">✕ Xóa</button>
+</div>
+
+<!-- FLAG PANEL -->
+<div id="flag-panel">
+  <div class="fp-header">
+    <span class="fp-title">🚩 Câu đánh dấu</span>
+    <button class="fp-close" onclick="toggleFlagPanel()">×</button>
+  </div>
+  <div id="flag-panel-list"></div>
+</div>
+
+<!-- REVIEW BANNER -->
+<div id="review-banner">
+  <div class="rb-left">
+    <button onclick="backToResult()" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);color:#fff;font-family:'Be Vietnam Pro',sans-serif;font-size:12px;font-weight:600;padding:5px 12px;border-radius:6px;cursor:pointer;letter-spacing:0.3px;">← Quay lại</button>
+    <span class="rb-icon">👁️</span>
+    <span>Chế độ xem lại — Bài đã nộp, không thể chỉnh sửa</span>
+  </div>
+  <span id="rb-score-badge" class="rb-score">0/40</span>
+</div>
+
+<!-- RESULT SCREEN -->
+<div id="result-screen">
+  <div class="result-card">
+    <div class="result-title">Kết quả bài thi</div>
+    <div id="result-score" class="result-score">0<span>/40</span></div>
+    <div id="result-name" class="result-name"></div>
+    <div id="result-status" class="result-status"></div>
+    <div class="result-actions" style="flex-direction:column; align-items:center; gap:10px;">
+      <button class="btn-answer-sheet" style="width:220px;" onclick="showAnswerSheet()">📋 Xem Answer Sheet</button>
+      <button onclick="enterReviewMode()" style="width:220px;background:#f5f0e8;color:#2d3436;border:1px solid #ccc;font-family:'Be Vietnam Pro',sans-serif;font-size:13px;font-weight:600;padding:13px;border-radius:8px;cursor:pointer;letter-spacing:0.5px;">👁️ Xem lại bài làm</button>
+    </div>
+  </div>
+</div>
+
+<!-- ANSWER SHEET -->
+<div id="answer-sheet-screen">
+  <div class="answer-sheet" id="answer-sheet-content">
+    <button class="btn-close-as" onclick="closeAnswerSheet()">×</button>
+    <div class="as-header">
+      <div class="as-logo">G.EDU</div>
+      <div class="as-test-name">IELTS Listening Test 3</div>
+      <div class="as-meta">
+        <span><b>Thí sinh:</b> <span id="as-name"></span></span>
+        <span><b>Lớp:</b> <span id="as-cls"></span></span>
+        <span><b>Ngày:</b> <span id="as-date"></span></span>
+      </div>
+    </div>
+    <div class="as-grid" id="as-grid"></div>
+    <div class="as-footer">G.EDU · Bảng trả lời do học sinh ghi nhận · Giáo viên chấm điểm thủ công</div>
+  </div>
+</div>
+
+<script>
+// ===== ANSWER KEY (BASE64 ENCODED) =====
+const _ak = btoa(JSON.stringify({
+  1:'80', 2:'26 september', 3:'king', 4:'jazz', 5:'table',
+  6:'lemon', 7:'congratulations', 8:'5544120043268887', 9:'sebastian', 10:'service',
+  11:'b', 12:'b', 13:'40', 14:'25',
+  15:'b', 16:'c', 17:'a', 18:'c',
+  '19_20':['b','e'],
+  '21_22':['a','d'], '23_24':['b','e'],
+  25:'g', 26:'h', 27:'a', 28:'e', 29:'b', 30:'c',
+  31:'cargo', 32:'rock', 33:'inscriptions', 34:'cracks',
+  35:'metal', 36:'wood', 37:'handle', 38:'eclipse', 39:'calendar', 40:'clocks'
+}));
+
+function getKey() { return JSON.parse(atob(_ak)); }
+
+// ===== STATE =====
+let studentName = '', studentCls = '';
+let answers = {}; // q1..q40
+let flags = {};   // qN: true/false
+let submitted = false;
+
+const STORAGE_KEY = () => 'ielts_t3_' + btoa(studentName + '|' + studentCls);
+
+function saveLocal() {
+  if (!studentName) return;
+  localStorage.setItem(STORAGE_KEY(), JSON.stringify({ answers, flags }));
+}
+
+function loadLocal() {
+  const raw = localStorage.getItem(STORAGE_KEY());
+  if (!raw) return false;
+  try {
+    const d = JSON.parse(raw);
+    answers = d.answers || {};
+    flags = d.flags || {};
+    return true;
+  } catch(e) { return false; }
+}
+
+// ===== LOGIN =====
+function doLogin() {
+  try {
+    const n = document.getElementById('login-name').value.trim().toUpperCase();
+    const c = document.getElementById('login-cls').value.trim().toUpperCase();
+    if (!n || !c) {
+      document.getElementById('login-error').textContent = 'Vui lòng nhập đầy đủ Họ tên và Lớp.';
+      return;
+    }
+    studentName = n; studentCls = c;
+    document.getElementById('sb-name').textContent = n;
+    document.getElementById('sb-cls').textContent = c;
+    const restored = loadLocal();
+    document.getElementById('login-screen').style.display = 'none';
+    buildQMap();
+    if (restored) restoreUI();
+  } catch(err) {
+    document.getElementById('login-error').textContent = 'LỖI: ' + err.message;
+  }
+}
+
+document.getElementById('login-name').addEventListener('keydown', e => { if (e.key==='Enter') document.getElementById('login-cls').focus(); });
+document.getElementById('login-cls').addEventListener('keydown', e => { if (e.key==='Enter') doLogin(); });
+
+// ===== RESTORE UI =====
+function restoreUI() {
+  // text inputs
+  for (let i=1; i<=40; i++) {
+    const el = document.getElementById('q'+i);
+    if (!el) continue;
+    if (el.tagName==='INPUT' && answers['q'+i] !== undefined) {
+      el.value = answers['q'+i];
+      if (el.value) el.classList.add('filled');
+    } else if (el.tagName==='SELECT' && answers['q'+i] !== undefined) {
+      el.value = answers['q'+i];
+      if (el.value) el.classList.add('filled');
+    }
+  }
+  // radios
+  [11,12].forEach(q => {
+    const v = answers['q'+q];
+    if (v) {
+      const r = document.querySelector(`input[name="q${q}"][value="${v}"]`);
+      if (r) { r.checked = true; r.closest('.mcq-option').classList.add('selected'); }
+    }
+  });
+  // checkboxes 19-20
+  const v1920 = answers['q19_20'] || [];
+  document.querySelectorAll('input[name="q1920"]').forEach(cb => {
+    if (v1920.includes(cb.value)) { cb.checked = true; cb.closest('.mcq-option').classList.add('selected'); }
+  });
+  // checkboxes 21-22
+  const v2122 = answers['q21_22'] || [];
+  document.querySelectorAll('input[name="q2122"]').forEach(cb => {
+    if (v2122.includes(cb.value)) { cb.checked = true; cb.closest('.mcq-option').classList.add('selected'); }
+  });
+  // checkboxes 23-24
+  const v2324 = answers['q23_24'] || [];
+  document.querySelectorAll('input[name="q2324"]').forEach(cb => {
+    if (v2324.includes(cb.value)) { cb.checked = true; cb.closest('.mcq-option').classList.add('selected'); }
+  });
+  // flags
+  Object.keys(flags).forEach(k => {
+    if (flags[k]) {
+      const n = parseInt(k.replace('q',''));
+      const btn = document.querySelector(`.q-flag-btn[data-q="${n}"]`);
+      if (btn) btn.classList.add('flagged');
+    }
+  });
+  updateQMap();
+}
+
+// ===== INPUTS =====
+function onInput(n) {
+  const el = document.getElementById('q'+n);
+  const v = el.value.trim();
+  answers['q'+n] = v;
+  el.classList.toggle('filled', v.length > 0);
+  updateQMap();
+  saveLocal();
+}
+
+function onRadio(n, val) {
+  answers['q'+n] = val;
+  document.querySelectorAll(`input[name="q${n}"]`).forEach(r => {
+    r.closest('.mcq-option').classList.toggle('selected', r.checked);
+  });
+  updateQMap();
+  saveLocal();
+}
+
+function onSelect(n) {
+  const el = document.getElementById('q'+n);
+  answers['q'+n] = el.value;
+  el.classList.toggle('filled', el.value !== '');
+  updateQMap();
+  saveLocal();
+}
+
+function onCheckbox1920() {
+  const cb = event.target;
+  let order = answers['q19_20'] ? [...answers['q19_20']] : [];
+  if (cb.checked) {
+    if (order.length >= 2) { cb.checked = false; return; }
+    order.push(cb.value);
+  } else {
+    order = order.filter(v => v !== cb.value);
+  }
+  document.querySelectorAll('input[name="q1920"]').forEach(c => {
+    c.closest('.mcq-option').classList.toggle('selected', c.checked);
+  });
+  answers['q19_20'] = order;
+  answers['q19'] = order[0] || '';
+  answers['q20'] = order[1] || '';
+  updateQMap();
+  saveLocal();
+}
+
+function onCheckbox2122() {
+  const cb = event.target;
+  let order = answers['q21_22'] ? [...answers['q21_22']] : [];
+  if (cb.checked) {
+    if (order.length >= 2) { cb.checked = false; return; }
+    order.push(cb.value);
+  } else {
+    order = order.filter(v => v !== cb.value);
+  }
+  document.querySelectorAll('input[name="q2122"]').forEach(c => {
+    c.closest('.mcq-option').classList.toggle('selected', c.checked);
+  });
+  answers['q21_22'] = order;
+  answers['q21'] = order[0] || '';
+  answers['q22'] = order[1] || '';
+  updateQMap();
+  saveLocal();
+}
+
+function onCheckbox2324() {
+  const cb = event.target;
+  let order = answers['q23_24'] ? [...answers['q23_24']] : [];
+  if (cb.checked) {
+    if (order.length >= 2) { cb.checked = false; return; }
+    order.push(cb.value);
+  } else {
+    order = order.filter(v => v !== cb.value);
+  }
+  document.querySelectorAll('input[name="q2324"]').forEach(c => {
+    c.closest('.mcq-option').classList.toggle('selected', c.checked);
+  });
+  answers['q23_24'] = order;
+  answers['q23'] = order[0] || '';
+  answers['q24'] = order[1] || '';
+  updateQMap();
+  saveLocal();
+}
+
+// ===== FLAG =====
+function toggleFlag(n) {
+  flags['q'+n] = !flags['q'+n];
+  const btn = document.querySelector(`.q-flag-btn[data-q="${n}"]`);
+  if (btn) btn.classList.toggle('flagged', flags['q'+n]);
+  updateQMap();
+  saveLocal();
+}
+
+// ===== QMAP =====
+function buildQMap() {
+  const qmap = document.getElementById('qmap');
+  qmap.innerHTML = '';
+  const parts = [[1,10,'PART 1'],[11,20,'PART 2'],[21,30,'PART 3'],[31,40,'PART 4']];
+  parts.forEach(([start, end, label]) => {
+    const lbl = document.createElement('div');
+    lbl.className = 'qmap-part-label';
+    lbl.textContent = label;
+    qmap.appendChild(lbl);
+    let row = document.createElement('div');
+    row.className = 'qmap-row';
+    for (let i = start; i <= end; i++) {
+      if ((i - start) > 0 && (i - start) % 5 === 0) {
+        qmap.appendChild(row);
+        row = document.createElement('div');
+        row.className = 'qmap-row';
+      }
+      const cell = document.createElement('div');
+      cell.className = 'qmap-cell';
+      cell.id = 'qmap-' + i;
+      cell.textContent = i;
+      cell.onclick = () => { document.getElementById('anchor-' + i)?.scrollIntoView({behavior:'smooth', block:'center'}); };
+      row.appendChild(cell);
+    }
+    qmap.appendChild(row);
+  });
+}
+
+function updateQMap() {
+  for (let i = 1; i <= 40; i++) {
+    const cell = document.getElementById('qmap-' + i);
+    if (!cell) continue;
+    const ans = getAnswerDisplay(i);
+    const answered = ans && ans.length > 0;
+    const flagged = flags['q'+i];
+    cell.classList.toggle('answered', answered);
+    cell.classList.toggle('flagged', !!flags['q'+i]);
+  }
+}
+
+function getAnswerDisplay(n) {
+  if ([19,20,21,22,23,24].includes(n)) return answers['q'+n] || '';
+  return answers['q'+n] || '';
+}
+
+// ===== FLAG PANEL =====
+function toggleFlagPanel() {
+  const panel = document.getElementById('flag-panel');
+  panel.classList.toggle('visible');
+  if (panel.classList.contains('visible')) renderFlagPanel();
+}
+
+function renderFlagPanel() {
+  const list = document.getElementById('flag-panel-list');
+  list.innerHTML = '';
+  const flagged = Object.keys(flags).filter(k=>flags[k]).map(k=>parseInt(k.replace('q','')));
+  if (!flagged.length) {
+    list.innerHTML = '<div class="fp-empty">Chưa có câu nào được đánh dấu.</div>';
+    return;
+  }
+  flagged.sort((a,b)=>a-b).forEach(n => {
+    const item = document.createElement('div');
+    item.className = 'fp-item';
+    item.innerHTML = `<span class="fp-q-num">Q${n}</span><span>Câu ${n}</span>`;
+    item.onclick = () => {
+      document.getElementById('anchor-' + n)?.scrollIntoView({behavior:'smooth', block:'center'});
+      toggleFlagPanel();
+    };
+    list.appendChild(item);
+  });
+}
+
+// ===== SCORING =====
+function calcScore() {
+  const key = getKey();
+  let score = 0;
+
+  // Q1-10 text
+  for (let i=1; i<=10; i++) {
+    const userRaw = (answers['q'+i]||'').toLowerCase().trim();
+    const correct = key[i].toString().toLowerCase().trim();
+    // Multiple accepted forms for Q2
+    if (i===2) {
+      const accepted = ['26 september','september 26','26th september','september 26th'];
+      if (accepted.some(a=>userRaw===a)) score++;
+    } else {
+      if (userRaw === correct) score++;
+    }
+  }
+
+  // Q11-12 radio
+  for (let i=11; i<=12; i++) {
+    const u = (answers['q'+i]||'').toLowerCase();
+    if (u === key[i]) score++;
+  }
+
+  // Q13-14 text
+  for (let i=13; i<=14; i++) {
+    const u = (answers['q'+i]||'').toLowerCase().trim();
+    if (u === key[i]) score++;
+  }
+
+  // Q15-18 matching
+  for (let i=15; i<=18; i++) {
+    const u = (answers['q'+i]||'').toLowerCase();
+    if (u === key[i]) score++;
+  }
+
+  // Q19-20 checkbox pair
+  const u1920 = (answers['q19_20']||[]).map(v=>v.toLowerCase()).sort();
+  const k1920 = key['19_20'].map(v=>v.toLowerCase()).sort();
+  if (JSON.stringify(u1920)===JSON.stringify(k1920)) score += 2;
+
+  // Q21-22 checkbox pair
+  const u2122 = (answers['q21_22']||[]).map(v=>v.toLowerCase()).sort();
+  const k2122 = key['21_22'].map(v=>v.toLowerCase()).sort();
+  if (JSON.stringify(u2122)===JSON.stringify(k2122)) score += 2;
+
+  // Q23-24 checkbox pair
+  const u2324 = (answers['q23_24']||[]).map(v=>v.toLowerCase()).sort();
+  const k2324 = key['23_24'].map(v=>v.toLowerCase()).sort();
+  if (JSON.stringify(u2324)===JSON.stringify(k2324)) score += 2;
+
+  // Q25-30 dropdown
+  for (let i=25; i<=30; i++) {
+    const u = (answers['q'+i]||'').toLowerCase();
+    if (u === key[i]) score++;
+  }
+
+  // Q31-40 text
+  for (let i=31; i<=40; i++) {
+    const u = (answers['q'+i]||'').toLowerCase().trim();
+    if (u === key[i]) score++;
+  }
+
+  return score;
+}
+
+// ===== SUBMIT =====
+function confirmSubmit() {
+  if (!confirm('Bạn có chắc muốn nộp bài? Hành động này không thể hoàn tác.')) return;
+  submitExam();
+}
+
+async function submitExam() {
+  const score = calcScore();
+  submitted = true;
+
+  const allAnswers = {};
+  for (let i=1; i<=40; i++) allAnswers['q'+i] = getAnswerDisplay(i);
+
+  const params = new URLSearchParams({
+    test_name: 'listening_test3',
+    name: studentName,
+    cls: studentCls,
+    score: score,
+    answers: JSON.stringify(allAnswers)
+  });
+
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbze-ULqfpnB5IcJxAvg2m7IfSqkoUY4JmoHnjvpuGvxodzmLbhHHlcqxfcnha2aahY/exec';
+  let tries = 0;
+  const trySubmit = async () => {
+    try {
+      await fetch(SCRIPT_URL + '?' + params.toString(), { method: 'GET', mode: 'no-cors' });
+    } catch(e) {
+      if (tries++ < 3) setTimeout(trySubmit, 2000);
+    }
+  };
+  trySubmit();
+
+  document.getElementById('result-score').innerHTML = score + '<span>/40</span>';
+  document.getElementById('result-name').textContent = studentName + ' · ' + studentCls;
+  const band = score >= 35 ? '9.0' : score >= 30 ? '8.0' : score >= 25 ? '7.0' : score >= 20 ? '6.0' : score >= 16 ? '5.5' : '≤5.0';
+  document.getElementById('result-status').textContent = `Tương đương Band ${band} (ước tính)`;
+  document.getElementById('result-screen').classList.add('visible');
+}
+
+// ===== ANSWER SHEET =====
+function showAnswerSheet() {
+  document.getElementById('as-name').textContent = studentName;
+  document.getElementById('as-cls').textContent = studentCls;
+  document.getElementById('as-date').textContent = new Date().toLocaleDateString('vi-VN');
+
+  const grid = document.getElementById('as-grid');
+  grid.innerHTML = '';
+
+  const parts = [{label:'PART 1', start:1, end:10},{label:'PART 2', start:11, end:20},
+                 {label:'PART 3', start:21, end:30},{label:'PART 4', start:31, end:40}];
+
+  parts.forEach(p => {
+    const header = document.createElement('div');
+    header.className = 'as-part-header';
+    header.textContent = p.label;
+    grid.appendChild(header);
+
+    for (let i = p.start; i <= p.end; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'as-cell';
+      const ans = getAnswerDisplay(i) || '—';
+      cell.innerHTML = `<span class="as-cell-num">${i}</span><span class="as-cell-ans">${ans}</span>`;
+      grid.appendChild(cell);
+    }
+  });
+
+  document.getElementById('answer-sheet-screen').classList.add('visible');
+}
+
+function closeAnswerSheet() {
+  document.getElementById('answer-sheet-screen').classList.remove('visible');
+}
+
+// ===== REVIEW MODE =====
+function backToResult() {
+  document.getElementById('review-banner').classList.remove('visible');
+  document.body.classList.remove('review-mode');
+  document.getElementById('result-screen').classList.add('visible');
+}
+
+function enterReviewMode() {
+  // Hide result overlay
+  document.getElementById('result-screen').classList.remove('visible');
+
+  // Apply review class to body
+  document.body.classList.add('review-mode');
+
+  // Show banner with score
+  const scoreEl = document.getElementById('result-score');
+  const scoreText = scoreEl.textContent.replace('/40','').trim();
+  document.getElementById('rb-score-badge').textContent = scoreText + '/40';
+  document.getElementById('review-banner').classList.add('visible');
+
+  // Disable all inputs
+  document.querySelectorAll('.q-input').forEach(el => {
+    el.setAttribute('readonly', true);
+    el.setAttribute('tabindex', '-1');
+  });
+  document.querySelectorAll('.q-select').forEach(el => {
+    el.setAttribute('disabled', true);
+  });
+  document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(el => {
+    el.setAttribute('disabled', true);
+  });
+
+  // Scroll to top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ===== HIGHLIGHT =====
+let savedRange = null;
+
+document.addEventListener('mouseup', e => {
+  if (e.target.closest('#highlight-menu')) return;
+  const sel = window.getSelection();
+  if (!sel || sel.isCollapsed || !sel.toString().trim()) {
+    document.getElementById('highlight-menu').classList.remove('visible');
+    return;
+  }
+  // Check if selection is inside main content
+  const range = sel.getRangeAt(0);
+  const main = document.getElementById('main');
+  if (!main.contains(range.commonAncestorContainer)) {
+    document.getElementById('highlight-menu').classList.remove('visible');
+    return;
+  }
+  savedRange = range.cloneRange();
+  const rect = range.getBoundingClientRect();
+  const menu = document.getElementById('highlight-menu');
+  menu.classList.add('visible');
+  const mx = Math.min(rect.left + rect.width/2 - 70, window.innerWidth - 160);
+  menu.style.left = Math.max(4, mx) + 'px';
+  menu.style.top = (rect.top - 48) + 'px';
+});
+
+document.addEventListener('mousedown', e => {
+  if (!e.target.closest('#highlight-menu')) {
+    document.getElementById('highlight-menu').classList.remove('visible');
+  }
+});
+
+function applyHighlight(color) {
+  if (!savedRange) return;
+  try {
+    // Check range is valid and in text nodes only
+    const range = savedRange;
+    // Wrap selected text in a <mark> span
+    const mark = document.createElement('mark');
+    mark.style.backgroundColor = color;
+    mark.style.borderRadius = '2px';
+    mark.style.padding = '0 1px';
+    mark.className = 'hl-mark';
+    // surroundContents fails if selection crosses elements — use extractContents instead
+    try {
+      range.surroundContents(mark);
+    } catch(e) {
+      // Fallback: extract + wrap
+      const fragment = range.extractContents();
+      mark.appendChild(fragment);
+      range.insertNode(mark);
+    }
+    window.getSelection().removeAllRanges();
+  } catch(e) { console.warn('Highlight error:', e); }
+  document.getElementById('highlight-menu').classList.remove('visible');
+  savedRange = null;
+}
+
+function clearHighlight() {
+  if (!savedRange) return;
+  // Find any .hl-mark nodes inside the saved range and unwrap them
+  try {
+    const ancestor = savedRange.commonAncestorContainer.nodeType === 1
+      ? savedRange.commonAncestorContainer
+      : savedRange.commonAncestorContainer.parentElement;
+    const marks = ancestor.querySelectorAll ? ancestor.querySelectorAll('.hl-mark') : [];
+    marks.forEach(m => {
+      const parent = m.parentNode;
+      while (m.firstChild) parent.insertBefore(m.firstChild, m);
+      parent.removeChild(m);
+      parent.normalize();
+    });
+    // Also unwrap if ancestor itself is a mark
+    if (ancestor.classList && ancestor.classList.contains('hl-mark')) {
+      const p = ancestor.parentNode;
+      while (ancestor.firstChild) p.insertBefore(ancestor.firstChild, ancestor);
+      p.removeChild(ancestor);
+      p.normalize();
+    }
+  } catch(e) {}
+  window.getSelection().removeAllRanges();
+  document.getElementById('highlight-menu').classList.remove('visible');
+  savedRange = null;
+}
+
+// Click on a highlight mark to remove it
+document.getElementById('main').addEventListener('click', e => {
+  const mark = e.target.closest('.hl-mark');
+  if (mark && !e.target.closest('input, select, button')) {
+    const sel = window.getSelection();
+    if (!sel || sel.isCollapsed) {
+      const parent = mark.parentNode;
+      while (mark.firstChild) parent.insertBefore(mark.firstChild, mark);
+      parent.removeChild(mark);
+      parent.normalize();
+    }
+  }
+});
+
+// ===== PREVENT CHEATING =====
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (e.key === 'F12' || (e.ctrlKey && ['u','s','p'].includes(e.key.toLowerCase()))) e.preventDefault();
+});
+</script>
+</body>
+</html>
