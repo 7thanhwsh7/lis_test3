@@ -1690,7 +1690,7 @@ const CONFIG = {
 
   CORRECT_ANSWERS: {
     "1":  "80",
-    "2":  "26 september",
+    "2":  ["26 september","26th september","september 26","september 26th"],
     "3":  "king",
     "4":  "jazz",
     "5":  "table",
@@ -2188,14 +2188,24 @@ function calcScore() {
 
   Object.entries(CA).forEach(([key, correct]) => {
     const student = state.answers[key];
+
     if (Array.isArray(correct)) {
-      // Dual: compare sorted arrays
-      if (Array.isArray(student)) {
-        const a = [...correct].map(x=>x.toLowerCase()).sort().join(',');
-        const b = [...student].map(x=>x.toLowerCase()).sort().join(',');
-        if (a === b) score += correct.length; // each item counts as 1 point
+      // ── DUAL group (e.g. "19-20", "21-22"): student must pick the same set ──
+      if (CONFIG.DUAL_GROUPS.includes(key)) {
+        if (Array.isArray(student)) {
+          const a = [...correct].map(x=>x.toLowerCase()).sort().join(',');
+          const b = [...student].map(x=>x.toLowerCase()).sort().join(',');
+          if (a === b) score += correct.length;
+        }
+      } else {
+        // ── Alternatives array: any one match = correct (e.g. Q2 date formats) ──
+        if (student) {
+          const s = student.toString().toLowerCase().trim();
+          if (correct.some(c => c.toLowerCase().trim() === s)) score++;
+        }
       }
     } else {
+      // ── Single string answer ──
       if (student && student.toString().toLowerCase().trim() === correct.toLowerCase().trim()) {
         score++;
       }
