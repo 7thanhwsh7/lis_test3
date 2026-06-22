@@ -2119,8 +2119,10 @@ function getDisplayAnswer(n) {
     return Number(n) === a || Number(n) === b;
   });
   if (dualKey) {
-    const arr = state.answers[dualKey];
-    return arr && arr.length ? arr.join(', ') : '';
+    const arr = state.answers[dualKey] || [];
+    const [a] = dualKey.split('-').map(Number);
+    const idx = Number(n) === a ? 0 : 1;
+    return arr[idx] !== undefined ? arr[idx] : '';
   }
   return state.answers[String(n)] || '';
 }
@@ -2237,7 +2239,9 @@ async function submitExam() {
     });
     if (dualKey) {
       const arr = state.answers[dualKey] || [];
-      flatAnswers[String(i)] = arr.join('/');
+      const [a] = dualKey.split('-').map(Number);
+      const idx = i === a ? 0 : 1;
+      flatAnswers[String(i)] = arr[idx] !== undefined ? arr[idx] : '';
     } else {
       flatAnswers[String(i)] = state.answers[String(i)] || '';
     }
