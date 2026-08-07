@@ -2209,10 +2209,22 @@ function getDisplayAnswer(n) {
     return Number(n) === a || Number(n) === b;
   });
   if (dualKey) {
-    const arr = state.answers[dualKey];
-    return arr && arr.length ? arr.join(', ') : '';
+    return getDualSplitAnswer(dualKey, Number(n));
   }
   return state.answers[String(n)] || '';
+}
+
+// Splits a dual-group's selected answers (e.g. ['B','C']) so each of the
+// two question numbers gets exactly ONE letter — first (alphabetically
+// sorted) letter goes to the lower question number, second to the higher.
+// This is what gets shown on the Answer Sheet AND sent to Google Sheets,
+// so each question column contains a single, gradable letter.
+function getDualSplitAnswer(groupKey, qNum) {
+  const [a, b] = groupKey.split('-').map(Number);
+  const arr = state.answers[groupKey] || [];
+  if (qNum === a) return arr[0] || '';
+  if (qNum === b) return arr[1] || '';
+  return '';
 }
 
 function goToFlaggedQ(n) {
@@ -2335,8 +2347,7 @@ async function submitExam() {
       return i === a || i === b;
     });
     if (dualKey) {
-      const arr = state.answers[dualKey] || [];
-      flatAnswers[String(i)] = arr.join('/');
+      flatAnswers[String(i)] = getDualSplitAnswer(dualKey, i);
     } else {
       flatAnswers[String(i)] = state.answers[String(i)] || '';
     }
